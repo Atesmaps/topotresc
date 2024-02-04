@@ -1,7 +1,10 @@
-# topotresc
-This is a project to build a map server customized for mountain hiking. It is based in the **OpenStreetMap** (OSM) data with high detail **hillshading** and **elevation contour lines** from different institutional open data sources. You can see the live site here: 
+# Atesmaps Tile Server
 
-https://www.topotresc.com
+> Project forked from: [Topotresc](https://github.com/aresta/topotresc)
+
+This is a project to build a map server customized for mountain hiking. It is based in the **OpenStreetMap** (OSM) data with high detail **hillshading** and **elevation contour lines** from different institutional open data sources.
+
+You can see the live site here: [tileserver.atesmaps.org](https://tileserver.atesmaps.org)
 
 It provides also a online map source (TMS) to be used in desktop and mobile applications:
 
@@ -14,10 +17,9 @@ It provides also a online map source (TMS) to be used in desktop and mobile appl
 - TwoNav Land
 
 
-
-|             |     |
-:-------------------------:|:-------------------------:|
-|![Sant Maurici](docs/img/st_maurici.jpg)   |  ![Balaitus](docs/img/balaitus.jpg)  |
+|                                          |                                    |
+|:----------------------------------------:|:----------------------------------:|
+| ![Sant Maurici](docs/img/st_maurici.jpg) | ![Balaitus](docs/img/balaitus.jpg) |
 
 The system is built using **mapnik** and the **gdal tools** among others. The development environment described here is built on docker.
 
@@ -43,14 +45,11 @@ Rendering all the different combinations of difficulty and visibility can be con
 
 Here we can see diferent combinations of rendering for difficulty (red=easy, darker=difficult) and visibility (more dotted/smaller=less visible)
 
-
-
-
 ## Getting Started
 
 ### Prerequisites
 
-- Install docker and docker-composer. This is enougth to test the system in your computer with the sample data provided.
+- Install docker and docker compose. This is enougth to test the system in your computer with the sample data provided.
 - Optional: to create maps for other zones you need to get the openstreetmap data and the DEM (elevation data) files of the area, as explained below.
 - Optional: to run the map in production you will need a proper tile server. I'm using for that a serverless approach with just an amazon AWS lamda funtion and S3 storage, not described in this document.
 
@@ -59,16 +58,15 @@ Here we can see diferent combinations of rendering for difficulty (red=easy, dar
 
 - ### Clone and build the docker images
 ```
-git clone https://github.com/aresta/topotresc
+git clone https://github.com/atesmaps/topotresc
 cd topotresc
-docker-compose build
+docker compose build
 ```
 This includes two images: the PostgresSQL server and a image with many tools installed (Ubuntu, gdal, ogr, osmium...)
 
-
 - ### Start the containers
 ```
-docker-compose up
+docker compose up
 ```
 Check posible errors.  If everything is fine later you can also execute the command with the -d flag to make the containers run in backgrund, but now is better to be able to see the posible errors in the next steps.
 
@@ -77,12 +75,12 @@ Check posible errors.  If everything is fine later you can also execute the comm
 Open a second terminal, navigate to the project folder fix the permissions and execute the scripts:
 ```
 chmod +x tools/scripts/*.sh tools/scripts/*.py
-docker-compose exec tools /scripts/import_test_data.sh
+docker compose exec tools /scripts/import_test_data.sh
 ```
 when the data is loaded you can start the script that reders all the tiles:
 
 ```
-docker-compose exec tools /scripts/render_tilezip.py
+docker compose exec tools /scripts/render_tilezip.py
 ```
 This can take some time depending on the area to render.
 (*Make sure that the postgres database in the container (previuos step) is up and running*).

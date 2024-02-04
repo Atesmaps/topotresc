@@ -3,7 +3,7 @@
 echo "Creating shades"
 # hill-shades
 [ -d /mnt/shades ] || mkdir -p /mnt/shades
-cd /mnt/shades
+cd /mnt/shades || exit
 ogr2ogr -f GeoJSON tot_3043.geojson -s_srs EPSG:4326 -t_srs EPSG:3043 ../conf/tot.geojson
 ogr2ogr -f GeoJSON andorra_3035.geojson -s_srs EPSG:4326 -t_srs EPSG:3035 ../conf/andorra.geojson
 ogr2ogr -f GeoJSON tot_2154.geojson -s_srs EPSG:4326 -t_srs EPSG:2154 ../conf/tot.geojson

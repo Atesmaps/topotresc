@@ -12,4 +12,11 @@ notes.txt
 !mnt/shades/shades_merged.vrt
 !mnt/shades/color_relief_test.tif
 !mnt/shades/color_relief.vrt
-tools/web_server/__pycache__
+
+# Developer
+**/node_modules/
+**/__pycache__/
+
+env/
+
+.DS_Store

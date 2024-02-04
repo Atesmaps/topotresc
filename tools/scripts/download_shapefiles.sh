@@ -11,7 +11,7 @@ cd /mnt/base_data
 wget https://osmdata.openstreetmap.de/download/simplified-water-polygons-split-3857.zip
 wget https://osmdata.openstreetmap.de/download/water-polygons-split-3857.zip
 unzip '*.zip'
-rm -f *.zip
+rm -f -- *.zip
 
 # Not needed for our zoom levels
 # wget https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_boundary_lines_land.zip

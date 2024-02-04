@@ -4,7 +4,7 @@
 echo "Download PBFs, clip and build tot.pbf"
 
 [ -d /mnt/pbf ] || mkdir -p /mnt/pbf
-cd /mnt/pbf
+cd /mnt/pbf || exit
 wget -N http://download.openstreetmap.fr/extracts/europe/spain-latest.osm.pbf
 wget -N http://download.openstreetmap.fr/extracts/europe/france-latest.osm.pbf
 wget -N http://download.geofabrik.de/europe/andorra-latest.osm.pbf
@@ -23,4 +23,3 @@ osmium renumber --start-id=80000000 picos.pbf -o picos_b.pbf
 
 osmium merge piri_and.pbf piri_es_b.pbf piri_fr_b.pbf picos_b.pbf --overwrite -o tot.pbf
 rm piri_and.pbf piri_fr.pbf piri_es.pbf piri_fr_b.pbf piri_es_b.pbf picos.pbf picos_b.pbf
-
